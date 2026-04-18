@@ -9,7 +9,7 @@ const links = [
   { to: "/learn", label: "Learn", icon: BookOpen },
   { to: "/practice", label: "Practice", icon: MessageSquare },
   { to: "/test", label: "Test", icon: Target },
-  { to: "/resource", label: "Resource", icon: Book}
+  { to: "/resources", label: "Resources", icon: Book}
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {

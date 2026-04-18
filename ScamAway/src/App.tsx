@@ -13,7 +13,7 @@ import LessonView from "./pages/LessonView.tsx";
 import PracticeIndex from "./pages/PracticeIndex.tsx";
 import PracticeRun from "./pages/PracticeRun.tsx";
 import Test from "./pages/Test.tsx";
-import Resource from "./pages/Resource.tsx"
+import Resources from "./pages/Resource.tsx"
 
 const queryClient = new QueryClient();
 
@@ -33,7 +33,7 @@ const App = () => (
           <Route path="/practice/:id" element={<PracticeRun />} />
           <Route path="/test" element={<Test />} />
           <Route path="/legacy" element={<Index />} />
-          <Route path="/resource" element={<Resource/>} />
+          <Route path="/resources" element={<Resources />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -31,7 +31,7 @@ const resources: ResourceItem[] = [
   },
 ];
 
-const Resource: React.FC = () => {
+const Resources: React.FC = () => {
   return (
     <AppShell>
       <div className="flex items-end justify-between gap-4 flex-wrap">
@@ -76,4 +76,4 @@ const Resource: React.FC = () => {
   );
 };
 
-export default Resource;
+export default Resources;
