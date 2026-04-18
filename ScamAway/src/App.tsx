@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ThemeProvider } from "next-themes";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +20,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+<<<<<<< Updated upstream
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -39,6 +41,30 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+=======
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/onboarding" element={<Onboarding />} />
+            <Route path="/app" element={<Home />} />
+            <Route path="/learn" element={<LearnIndex />} />
+            <Route path="/learn/:id" element={<LessonView />} />
+            <Route path="/practice" element={<PracticeIndex />} />
+            <Route path="/practice/:id" element={<PracticeRun />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/legacy" element={<Index />} />
+            <Route path="/resource" element={<Resource/>} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
+>>>>>>> Stashed changes
   </QueryClientProvider>
 );
 

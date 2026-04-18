@@ -3,6 +3,7 @@ import { Shield, BookOpen, MessageSquare, Trophy, Target, LogIn, LogOut, Book } 
 import { useProgress } from "@/hooks/useProgress";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const links = [
   { to: "/app", label: "Home", icon: Shield },
@@ -48,6 +49,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </nav>
           <div className="flex items-center gap-2">
           </div>
+          <ThemeToggle />
         </div>
       </header>
 
