@@ -20,51 +20,28 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-<<<<<<< Updated upstream
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/onboarding" element={<Onboarding />} />
-          <Route path="/app" element={<Home />} />
-          <Route path="/learn" element={<LearnIndex />} />
-          <Route path="/learn/:id" element={<LessonView />} />
-          <Route path="/practice" element={<PracticeIndex />} />
-          <Route path="/practice/:id" element={<PracticeRun />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/legacy" element={<Index />} />
-          <Route path="/resources" element={<Resources />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-=======
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <TooltipProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/app" element={<Home />} />
-            <Route path="/learn" element={<LearnIndex />} />
-            <Route path="/learn/:id" element={<LessonView />} />
-            <Route path="/practice" element={<PracticeIndex />} />
-            <Route path="/practice/:id" element={<PracticeRun />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/legacy" element={<Index />} />
-            <Route path="/resource" element={<Resource/>} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/onboarding" element={<Onboarding />} />
+              <Route path="/app" element={<Home />} />
+              <Route path="/learn" element={<LearnIndex />} />
+              <Route path="/learn/:id" element={<LessonView />} />
+              <Route path="/practice" element={<PracticeIndex />} />
+              <Route path="/practice/:id" element={<PracticeRun />} />
+              <Route path="/test" element={<Test />} />
+              <Route path="/legacy" element={<Index />} />
+              <Route path="/resources" element={<Resources />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
->>>>>>> Stashed changes
+      </ThemeProvider>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

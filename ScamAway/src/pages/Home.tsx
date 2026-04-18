@@ -28,7 +28,7 @@ const Home = () => {
         >
           <div className="flex items-start justify-between">
             <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold backdrop-blur">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-background/20 px-3 py-1 text-xs font-semibold backdrop-blur">
                 <Flame className="h-3 w-3" /> Recommended
               </span>
               <h2 className="mt-4 font-display text-3xl font-bold">Roleplay an AI scammer</h2>
@@ -38,7 +38,7 @@ const Home = () => {
             </div>
             <MessageSquare className="h-8 w-8 opacity-80" />
           </div>
-          <Button variant="secondary" className="mt-6 bg-white/95 text-foreground hover:bg-white">
+          <Button variant="secondary" className="mt-6 bg-background/95 text-foreground hover:bg-background">
             Start practice <ChevronRight />
           </Button>
         </Link>
