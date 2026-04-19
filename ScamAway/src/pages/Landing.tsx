@@ -60,10 +60,11 @@ const Landing = () => {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="font-display text-4xl md:text-5xl font-black leading-tight"
+                style= {{textAlign: 'center'}}
               >
                 Who are we training today?
               </motion.h1>
-              <p className="mt-3 text-muted-foreground text-lg">
+              <p className="mt-3 text-muted-foreground text-lg" style= {{textAlign: 'center'}}>
                 We'll tune scenarios, vocabulary, and reading size to fit. You can
                 change this later.
               </p>
