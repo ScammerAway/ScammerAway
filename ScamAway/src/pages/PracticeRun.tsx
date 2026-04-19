@@ -286,7 +286,7 @@ const PracticeRun = () => {
                     <div className="text-xs font-semibold opacity-70 mb-1">
                       {item.speaker}
                     </div>
-                    <div className="whitespace-pre-wrap">{item.message}</div>
+                    <div className="whitespace-pre-wrap text-[25px]">{item.message}</div>
                   </>
                 ) : (
                   <>
@@ -336,7 +336,7 @@ const PracticeRun = () => {
               onClick={() => onChoose(c)}
               className="text-left rounded-2xl border-2 border-border bg-card p-4 shadow-soft hover:border-primary hover:bg-secondary/40 transition-all"
             >
-              <span className="font-medium">{c.label}</span>
+              <span className="font-medium text-[25px]">{c.label}</span>
             </motion.button>
           ))}
         </div>
