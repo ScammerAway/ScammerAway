@@ -42,6 +42,7 @@ const PracticeIndex = () => {
             Pick a scenario. The AI plays the scammer (or sometimes a real
             business — watch out for false alarms).
           </p>
+          <p className="mt-2 text-muted-foreground">Built for the <strong className="text-foreground">{progress.audience}</strong> track.</p>
         </div>
         <span className={cn("chip", isSenior && "text-lg px-4 py-2")}>
           <Sparkles className={cn("mr-1", isSenior ? "h-5 w-5" : "h-3 w-3")} />{" "}

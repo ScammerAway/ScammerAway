@@ -1,4 +1,5 @@
-export type Audience = "teen" | "adult" | "senior";
+// ScamSchool content. Modular: add lessons + scenarios by editing this file.
+export type Audience = "teen" | "adult" | "senior" | "all";
 
 export type Lesson = {
   id: string;
@@ -177,7 +178,7 @@ export const LESSONS: Lesson[] = [
     id: "irs-impersonation",
     title: "Government Impersonation",
     emoji: "🏛️",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     summary:
       "Real agencies (IRS, Social Security, police) never threaten arrest over the phone or demand payment in gift cards, crypto, or wire transfers.",
     redFlags: [
@@ -195,7 +196,7 @@ export const LESSONS: Lesson[] = [
     id: "grandparent",
     title: "The Grandparent Scam",
     emoji: "👵",
-    audiences: ["senior"],
+    audiences: ["senior", "all"],
     summary:
       "Scammers call pretending to be a grandchild in trouble — often using AI voice cloning — and beg for secret money transfers.",
     redFlags: [
@@ -212,7 +213,7 @@ export const LESSONS: Lesson[] = [
     id: "phishing-link",
     title: "Phishing Links & Fake Logins",
     emoji: "🎣",
-    audiences: ["teen", "adult", "senior"],
+    audiences: ["teen", "adult", "senior", "all"],
     summary:
       "A 'package issue', 'account locked', or 'prize' link sends you to a page that looks real but harvests your password.",
     redFlags: [
@@ -229,7 +230,7 @@ export const LESSONS: Lesson[] = [
     id: "romance",
     title: "Romance & Pig-Butchering",
     emoji: "💔",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     summary:
       "Long-running fake relationships built on social media that eventually pivot to crypto 'investment opportunities'.",
     redFlags: [
@@ -246,7 +247,7 @@ export const LESSONS: Lesson[] = [
     id: "job-recruit",
     title: "Fake Recruiter / Job Scams",
     emoji: "💼",
-    audiences: ["teen", "adult"],
+    audiences: ["teen", "adult", "all"],
     summary:
       "DMs offering remote jobs that pay too well, ask for an upfront fee, or want you to deposit checks and forward money.",
     redFlags: [
@@ -263,7 +264,7 @@ export const LESSONS: Lesson[] = [
     id: "crypto-influencer",
     title: "Crypto & Investment Hype",
     emoji: "🪙",
-    audiences: ["teen", "adult"],
+    audiences: ["teen", "adult", "all"],
     summary:
       "Influencer DMs, 'guaranteed returns', and dashboards that show fake profits to lure you into depositing more.",
     redFlags: [
@@ -636,7 +637,7 @@ export const SCENARIOS: Scenario[] = [
     id: "irs-call",
     title: "An urgent call from 'the IRS'",
     emoji: "🏛️",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     scammerType: "Government impersonation (IRS) phone scam",
     persona:
       "Aggressive 'IRS Officer Daniels, badge 4421'. Threatens arrest within the hour for unpaid back taxes. Demands payment in Apple gift cards.",
@@ -687,7 +688,7 @@ export const SCENARIOS: Scenario[] = [
     id: "grandkid-jail",
     title: "'Grandma, I'm in trouble…'",
     emoji: "👵",
-    audiences: ["senior"],
+    audiences: ["senior", "all"],
     scammerType: "Grandparent scam with voice cloning",
     persona:
       "Sobbing young man pretending to be the user's grandson 'Mike'. Says he's in jail after a car accident and needs $3,000 in cash bail, secret from his parents.",
@@ -738,7 +739,7 @@ export const SCENARIOS: Scenario[] = [
     id: "package-text",
     title: "USPS: 'Your package is held'",
     emoji: "📦",
-    audiences: ["teen", "adult", "senior"],
+    audiences: ["teen", "adult", "senior", "all"],
     scammerType: "Smishing — fake delivery text",
     persona:
       "Automated SMS pretending to be USPS, claiming a package needs a $1.99 redelivery fee via a sketchy link.",
@@ -778,7 +779,7 @@ export const SCENARIOS: Scenario[] = [
     id: "amazon-callback",
     title: "Amazon: 'Suspicious $899 order'",
     emoji: "🛒",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     scammerType: "Refund / remote-access scam",
     persona:
       "Polite 'Amazon support' rep claiming a fraudulent $899 order was placed. Wants to 'help' by installing AnyDesk to issue a refund.",
@@ -818,7 +819,7 @@ export const SCENARIOS: Scenario[] = [
     id: "insta-recruiter",
     title: "DM: 'We saw your profile…'",
     emoji: "💼",
-    audiences: ["teen", "adult"],
+    audiences: ["teen", "adult", "all"],
     scammerType: "Fake recruiter / task scam",
     persona:
       "Friendly 'HR rep from Connectly' offering $300/day for 'app review tasks'. Eventually asks you to deposit your own money to 'unlock' bigger tasks.",
@@ -859,7 +860,7 @@ export const SCENARIOS: Scenario[] = [
     id: "stripe-receipt",
     title: "An email from Stripe",
     emoji: "✅",
-    audiences: ["teen", "adult", "senior"],
+    audiences: ["teen", "adult", "senior", "all"],
     scammerType: "Legitimate business — practice not over-reacting",
     persona:
       "A real receipt email from Stripe for a subscription you actually signed up for. Tests whether the user can tell legit messages apart from scams.",

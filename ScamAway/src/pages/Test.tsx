@@ -123,6 +123,7 @@ const Test = () => {
           <h1 className={cn("font-display font-bold", isSenior ? "text-3xl" : "text-2xl")}>
             Test — Question {i + 1} / {questions.length}
           </h1>
+          <p className="mt-2 text-muted-foreground">Built for the <strong className="text-foreground">{progress.audience}</strong> track.</p>
         </div>
         <div className="flex gap-2">
           {questions.map((_, idx) => (
