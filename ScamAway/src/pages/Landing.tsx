@@ -35,9 +35,8 @@ const Landing = () => {
 
   return (
     <AppShell>
-    <div className="h-screen overflow-hidden bg-hero">
-
-      <section className="container pt-0 md:pt-0 pb-0 md:pb-0" style = {{paddingTop: 0}}>
+    <div className="min-h-screen overflow-hidden bg-hero">
+        <section className="container flex flex-col items-center justify-center text-center py-12 md:py-20" style = {{paddingTop: 0}}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
