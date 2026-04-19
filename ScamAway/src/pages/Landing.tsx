@@ -43,10 +43,10 @@ const Landing = () => {
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className="max-w-3xl"
         >
-          <span className="chip mb-6">
+          {/* <span className="chip mb-6">
             <Sparkles className="h-3 w-3" /> AI-powered scam roleplay
-          </span>
-          <h1 className="font-display text-0 md:text-5xl font-black leading-[1.05] text-foreground" style={{padding: '0'}}>
+          </span> */}
+          <h1 className="font-display text-0 md:text-6xl font-black leading-[1.05] text-foreground" style={{padding: '0'}}>
             Spot the scam <em className="not-italic text-[hsl(var(--danger))]">before</em> it spots you.
           </h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl">
