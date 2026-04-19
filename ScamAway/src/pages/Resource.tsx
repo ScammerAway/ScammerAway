@@ -36,6 +36,11 @@ const officialResources: ResourceItem[] = [
     description: "Identify and avoid recruitment fraud.",
     url: "https://consumer.ftc.gov/articles/job-scams",
   },
+  {
+    title: "Investment Scam(FTC)",
+    description: "Information about investment scams such as crypto, new money-making opportunity ",
+    url: "https://consumer.ftc.gov/articles/investment-scams",
+  },
 ];
 
 const youtubeChannels: ResourceItem[] = [
@@ -43,6 +48,11 @@ const youtubeChannels: ResourceItem[] = [
   { title: "Jim Browning", url: "https://www.youtube.com/@JimBrowning" },
   { title: "Scammer Payback", url: "https://www.youtube.com/@ScammerPayback" },
   { title: "Kitboga", url: "https://www.youtube.com/@KitbogaShow" },
+  { title: "Trilogy Media", url: "https://www.youtube.com/trilogymedia"},
+  { title: "NanoBaiter", url: "https://www.youtube.com/@NanoBaiter"},
+  { title: "Scambaiter", url: "https://www.youtube.com/@Scambaiter"},
+  { title: "ScammerRevolts", url: "https://www.youtube.com/scammerrevolts"}
+
 ];
 
 const Resources: React.FC = () => {
@@ -88,7 +98,7 @@ const Resources: React.FC = () => {
       <section className="mt-16 mb-12">
         <div className="flex items-center gap-3 mb-6">
           <Youtube className="h-6 w-6 text-red-600" />
-          <h2 className="font-display text-2xl font-bold">Scammerbaiter</h2>
+          <h2 className="font-display text-2xl font-bold">Scambaiter</h2>
         </div>
 
         <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
