@@ -1,18 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { motion } from "framer-motion";
-import { BookOpen, MessageSquare, Target, Trophy, ChevronRight, Flame } from "lucide-react";
+import { BookOpen, MessageSquare, Target, ChevronRight, Flame } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
-import { useProgress } from "@/hooks/useProgress";
+import { useProgress, type Audience } from "@/hooks/useProgress";
 import { getLessonsFor, getScenariosFor } from "@/content/curriculum";
 import { cn } from "@/lib/utils";
 
+const tracks: { id: Audience; emoji: string; title: string; desc: string }[] = [
+  { id: "teen", emoji: "🎓", title: "Teen / Young Adult", desc: "Crypto, job DMs, gaming." },
+  { id: "adult", emoji: "👤", title: "Adult", desc: "Phishing, refunds, recruiters." },
+  { id: "senior", emoji: "👵", title: "Senior", desc: "Medicare, grandparent, tech-support." },
+  { id: "all", emoji: "🌐", title: "Everything", desc: "Show every scenario across audiences." },
+];
+
 const Home = () => {
-  const { progress } = useProgress();
+  const { progress, setAudience } = useProgress();
+  const nav = useNavigate();
   const lessons = getLessonsFor(progress.audience);
   const scenarios = getScenariosFor(progress.audience);
   const completedPct = Math.round((progress.completedLessons.length / Math.max(lessons.length, 1)) * 100);
 
+  const pick = async (a: Audience) => {
+  await setAudience(a);
+  nav("/app");
+  };
   // Senior-specific scaling logic
   const isSenior = progress.audience === "senior";
 
@@ -27,7 +39,22 @@ const Home = () => {
           Today's training
         </h1>
       </motion.section>
-
+      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {tracks.map((t, i) => (
+            <motion.button
+              key={t.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, delay: i * 0.06 }}
+              onClick={() => pick(t.id)}
+              className="text-left rounded-3xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+            >
+              <div className="text-4xl">{t.emoji}</div>
+              <div className="mt-3 text-lg font-semibold">{t.title}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{t.desc}</p>
+            </motion.button>
+          ))}
+        </div>
       <div className="mt-8 grid gap-4 md:grid-cols-3">
         <Link
           to="/practice"
@@ -74,7 +101,7 @@ const Home = () => {
             "mt-2 text-white/85", 
             isSenior ? "text-xl md:text-2xl leading-relaxed" : "text-sm"
           )}>
-            Mixed scenarios. Time pressure. Real XP.
+            Mixed scenarios. Time pressure. 
           </p>
           <div className={cn("mt-6 inline-flex items-center gap-1 font-semibold", isSenior ? "text-xl" : "text-sm")}>
             Begin <ChevronRight className={isSenior ? "h-6 w-6" : "h-4 w-4"} />
@@ -130,6 +157,80 @@ const Home = () => {
           </div>
         </div>
       </div>
+  <div className="mt-10"></div> 
+  <div
+    className={cn(
+      "rounded-3xl border border-border bg-card shadow-soft",
+      isSenior ? "p-10" : "p-6"
+    )}
+  >
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <MessageSquare
+          className={cn(
+            "text-primary",
+            isSenior ? "h-8 w-8" : "h-5 w-5"
+          )}
+        />
+        <h2
+          className={cn(
+            "font-display font-bold",
+            isSenior ? "text-3xl" : "text-xl"
+          )}
+        >
+          Scenarios {progress.audience === "all" && "(everything)"}
+        </h2>
+      </div>
+    </div>
+
+    {/* MATCHED GRID + DENSITY */}
+    <div
+      className={cn(
+        "mt-6 grid gap-4",
+        isSenior ? "grid-cols-1" : "sm:grid-cols-2"
+      )}
+    >
+      {scenarios.map((s) => (
+        <Link
+          key={s.id}
+          to={`/practice?scenario=${s.id}`}
+          className={cn(
+            "group flex items-start gap-4 rounded-2xl border border-border bg-background hover:border-primary/40 hover:bg-secondary/50 transition",
+            isSenior ? "p-8 border-2" : "p-4"
+          )}
+        >
+          {/* SAME EMOJI SCALE */}
+          <span className={cn(isSenior ? "text-6xl" : "text-2xl")}>
+            {s.emoji}
+          </span>
+
+          <div className="min-w-0 flex-1">
+            {/* SAME TITLE WEIGHT + SIZE */}
+            <div
+              className={cn(
+                "font-bold leading-tight",
+                isSenior ? "text-2xl md:text-3xl" : "text-base"
+              )}
+            >
+              {s.title}
+            </div>
+
+            {/* MATCH LESSONS: treat metadata like summary */}
+            <div
+              className={cn(
+                "mt-1 text-muted-foreground",
+                isSenior
+                  ? "text-lg md:text-xl leading-relaxed"
+                  : "text-xs"
+              )}
+            >
+              {s.channel} · {s.scammerType}
+            </div>
+          </div>
+        </Link>
+      ))}
+    </div>
+  </div>
     </AppShell>
   );
 };
