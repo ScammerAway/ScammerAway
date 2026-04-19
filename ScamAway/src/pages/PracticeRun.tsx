@@ -56,11 +56,13 @@ const PracticeRun = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const startedRef = useRef(false);
 
+  // Senior-specific UI logic
+  const isSenior = progress.audience === "senior";
+
   useEffect(() => {
     if (!scenario || startedRef.current) return;
     startedRef.current = true;
     fetchTurn(1, []);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scenario]);
 
   useEffect(() => {
@@ -87,11 +89,9 @@ const PracticeRun = () => {
     turnNum: number,
     lastResult?: "safe" | "partial" | "scammed",
   ): AITurn => {
-    // Walk the hand-authored tree based on remaining script
     const startNode = scenario.nodes[scenario.start];
     let node = startNode;
     if (turnNum > 1 && lastResult) {
-      // pick a node based on prior choice's "next"
       const prevChoiceWithNext = Object.values(scenario.nodes)
         .flatMap((n) => n.choices)
         .find((c) => c.result === lastResult && c.next);
@@ -131,7 +131,6 @@ const PracticeRun = () => {
         },
       });
       if (error) throw error;
-      if ((data as any)?.error) throw new Error((data as any).error);
       const t = data as AITurn;
       setCurrent(t);
       setLog((l) => [
@@ -139,11 +138,9 @@ const PracticeRun = () => {
         { kind: "scammer", speaker: t.speaker, message: t.message },
       ]);
     } catch (e: any) {
-      console.warn("AI fallback:", e?.message);
       if (!usingFallback) {
         toast.message("Using offline scenario script", {
-          description:
-            "AI is unavailable — falling back to the authored dialog.",
+          description: "AI is unavailable — falling back to the authored dialog.",
         });
         setUsingFallback(true);
       }
@@ -168,7 +165,6 @@ const PracticeRun = () => {
     setResults(newResults);
 
     if (current.isFinal || c.result === "scammed") {
-      // End the run
       setDone(true);
       setCurrent(null);
       const score =
@@ -176,14 +172,13 @@ const PracticeRun = () => {
           (acc, r) => acc + (r === "safe" ? 100 : r === "partial" ? 50 : 0),
           0,
         ) / newResults.length;
-      const outcome: "safe" | "partial" | "scammed" = newResults.includes(
-        "scammed",
-      )
+      const outcome = newResults.includes("scammed")
         ? "scammed"
         : newResults.every((r) => r === "safe")
           ? "safe"
           : "partial";
-      const xp = await recordRun({
+      
+      await recordRun({
         scenarioId: scenario.id,
         mode: "practice",
         score: Math.round(score),
@@ -194,7 +189,6 @@ const PracticeRun = () => {
       return;
     }
 
-    // Continue to next turn
     setCurrent(null);
     const nextTurn = turn + 1;
     setTurn(nextTurn);
@@ -223,7 +217,7 @@ const PracticeRun = () => {
     }, 50);
   };
 
-  const outcome: "safe" | "partial" | "scammed" | null = done
+  const outcome = done
     ? results.includes("scammed")
       ? "scammed"
       : results.every((r) => r === "safe")
@@ -239,7 +233,7 @@ const PracticeRun = () => {
         onClick={() => nav("/practice")}
         className="mb-4"
       >
-        <ArrowLeft /> All scenarios
+        <ArrowLeft className="mr-2 h-4 w-4" /> All scenarios
       </Button>
 
       <header className="flex items-start justify-between gap-4 flex-wrap mb-6">
@@ -275,28 +269,31 @@ const PracticeRun = () => {
             >
               <div
                 className={cn(
-                  "max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-soft",
+                  "max-w-[85%] rounded-2xl px-4 py-3 leading-relaxed shadow-soft",
                   item.kind === "scammer"
                     ? "bg-secondary text-foreground rounded-tl-sm"
                     : "bg-primary text-primary-foreground rounded-tr-sm",
+                  // Large text for seniors
+                  isSenior ? "text-xl md:text-2xl" : "text-sm"
                 )}
               >
                 {item.kind === "scammer" ? (
                   <>
-                    <div className="text-xs font-semibold opacity-70 mb-1">
+                    <div className={cn("font-semibold opacity-70 mb-1", isSenior ? "text-base" : "text-xs")}>
                       {item.speaker}
                     </div>
-                    <div className="whitespace-pre-wrap text-[25px]">{item.message}</div>
+                    <div className="whitespace-pre-wrap">{item.message}</div>
                   </>
                 ) : (
                   <>
-                    <div className="text-xs font-semibold opacity-80 mb-1">
+                    <div className={cn("font-semibold opacity-80 mb-1", isSenior ? "text-base" : "text-xs")}>
                       You replied
                     </div>
                     <div>"{item.label}"</div>
                     <div
                       className={cn(
-                        "mt-2 text-xs rounded-lg px-2 py-1.5 inline-block",
+                        "mt-2 rounded-lg px-2 py-1.5 inline-block",
+                        isSenior ? "text-lg" : "text-xs",
                         item.result === "safe"
                           ? "bg-[hsl(var(--safe))] text-[hsl(var(--safe-foreground))]"
                           : item.result === "partial"
@@ -319,7 +316,7 @@ const PracticeRun = () => {
         </AnimatePresence>
 
         {loading && (
-          <div className="flex items-center gap-2 text-muted-foreground text-sm">
+          <div className={cn("flex items-center gap-2 text-muted-foreground", isSenior ? "text-xl" : "text-sm")}>
             <Loader2 className="h-4 w-4 animate-spin" /> Scammer is typing…
           </div>
         )}
@@ -334,9 +331,12 @@ const PracticeRun = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
               onClick={() => onChoose(c)}
-              className="text-left rounded-2xl border-2 border-border bg-card p-4 shadow-soft hover:border-primary hover:bg-secondary/40 transition-all"
+              className={cn(
+                "text-left rounded-2xl border-2 border-border bg-card shadow-soft hover:border-primary hover:bg-secondary/40 transition-all",
+                isSenior ? "p-6 text-xl md:text-2xl" : "p-4 text-base"
+              )}
             >
-              <span className="font-medium text-[25px]">{c.label}</span>
+              <span className="font-medium">{c.label}</span>
             </motion.button>
           ))}
         </div>
@@ -368,7 +368,7 @@ const PracticeRun = () => {
                 )}
               />
             )}
-            <h2 className="font-display text-2xl font-bold">
+            <h2 className={cn("font-display font-bold", isSenior ? "text-3xl" : "text-2xl")}>
               {outcome === "safe"
                 ? "You stayed safe!"
                 : outcome === "partial"
@@ -376,10 +376,10 @@ const PracticeRun = () => {
                   : "You got scammed."}
             </h2>
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className={cn("mt-2 text-muted-foreground", isSenior ? "text-xl" : "text-sm")}>
             Red flags in this scenario:
           </p>
-          <ul className="mt-2 grid gap-1 sm:grid-cols-2 text-sm">
+          <ul className={cn("mt-2 grid gap-1 sm:grid-cols-2", isSenior ? "text-lg" : "text-sm")}>
             {scenario.redFlags.map((rf) => (
               <li key={rf} className="flex gap-2">
                 <span>🚩</span>
@@ -388,14 +388,11 @@ const PracticeRun = () => {
             ))}
           </ul>
           <div className="mt-5 flex flex-wrap gap-2">
-            <Button onClick={restart} variant="outline">
-              <RotateCcw /> Try again
+            <Button onClick={restart} variant="outline" className={isSenior ? "h-14 px-8 text-lg" : ""}>
+              <RotateCcw className="mr-2 h-4 w-4" /> Try again
             </Button>
-            <Button asChild>
+            <Button asChild className={isSenior ? "h-14 px-8 text-lg" : ""}>
               <Link to="/practice">More scenarios</Link>
-            </Button>
-            <Button asChild variant="ghost">
-              <Link to="/test">Take the test</Link>
             </Button>
           </div>
         </motion.div>
