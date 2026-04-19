@@ -60,7 +60,7 @@ const LessonView = () => {
             <Button asChild variant="outline" size="lg"><Link to="/practice">Practice this →</Link></Button>
           ) : (
             <Button size="lg" onClick={async () => { await completeLesson(lesson.id); nav("/learn"); }}>
-              Mark complete +10 XP
+              Mark complete
             </Button>
           )}
           <Button asChild variant="ghost" size="lg"><Link to="/learn">More lessons</Link></Button>
