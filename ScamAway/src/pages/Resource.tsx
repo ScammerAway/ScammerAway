@@ -14,9 +14,9 @@ type ResourceItem = {
 
 const officialResources: ResourceItem[] = [
   {
-    title: "FTC Scam Alerts",
-    description: "Latest scams and how to avoid them.",
-    url: "https://consumer.ftc.gov/scams",
+   title: "Grandparent Scam (FCC)",
+    description: "Information about scammers pretending to be their grandkids that needs help and request help",
+    url: "https://consumer.ftc.gov/articles/investment-scams",
   },
   {
     title: "Phishing Guide (CISA)",
@@ -39,9 +39,24 @@ const officialResources: ResourceItem[] = [
     url: "https://consumer.ftc.gov/articles/job-scams",
   },
   {
-    title: "Investment Scam(FTC)",
-    description: "Information about investment scams such as crypto, new money-making opportunity ",
+    title: "Investment Scam (FTC)",
+    description: "Information about investment scams such as crypto, new money-making opportunity.",
     url: "https://consumer.ftc.gov/articles/investment-scams",
+  },
+  {
+  title: "Tech Support Scam (FTC)",
+    description: "Recognize and report fake 'virus' alerts from scammers pretending to be companies like Microsoft or Apple.",
+    url: "https://consumer.ftc.gov/articles/how-spot-avoid-and-report-tech-support-scams",
+  },
+  {
+  title: "Refund and Recovery Scam (FTC)",
+    description: "Scammers promise to recover money lost in previous scams for an upfront fee. They exploit your hope to get your money back, only to steal from you again.",
+    url: "https://consumer.ftc.gov/articles/refund-and-recovery-scams",
+  },
+  {
+    title: "Pig Butchering Scam (DFPI)",
+    description: "A long-term investment scam where fraudsters build a fake friendship or romance to lure you into depositing more and more money into a fraudulent crypto platform before disappearing.",
+    url: "https://dfpi.ca.gov/news/insights/pig-butchering-how-to-spot-and-report-the-scam/",
   },
 ];
 
