@@ -1,4 +1,3 @@
-// ScamSchool content. Modular: add lessons + scenarios by editing this file.
 export type Audience = "teen" | "adult" | "senior";
 
 export type Lesson = {
@@ -14,15 +13,14 @@ export type Lesson = {
 export type Choice = {
   id: string;
   label: string;
-  // safe = ideal response, partial = okay, scammed = falls for it
   result: "safe" | "partial" | "scammed";
   feedback: string;
-  next?: string; // next node id; if omitted, ends the scenario
+  next?: string;
 };
 
 export type DialogNode = {
   id: string;
-  speaker: string; // shown above the message
+  speaker: string;
   message: string;
   choices: Choice[];
 };
@@ -32,12 +30,11 @@ export type Scenario = {
   title: string;
   emoji: string;
   audiences: Audience[];
-  scammerType: string; // for AI roleplay system prompt
-  persona: string; // who the AI pretends to be
-  legitimate: boolean; // if true, the "scammer" is actually a real business — bonus twist
+  scammerType: string;
+  persona: string;
+  legitimate: boolean;
   redFlags: string[];
   channel: "sms" | "phone" | "email" | "dm" | "video-call";
-  // Hand-authored fallback tree (used when AI is unavailable / for the Test mode)
   start: string;
   nodes: Record<string, DialogNode>;
 };
@@ -148,8 +145,6 @@ export const LESSONS: Lesson[] = [
   },
 ];
 
-// Hand-authored branching scenarios. The AI mode generates dynamic dialog,
-// but these are the canonical fallback + Test-mode scripts.
 export const SCENARIOS: Scenario[] = [
   {
     id: "irs-call",

@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { AppShell } from "@/components/AppShell";
 import { Button } from "@/components/ui/button";
 import { Youtube, ExternalLink } from "lucide-react";
+import { useProgress } from "@/hooks/useProgress";
+import { cn } from "@/lib/utils";
 
 type ResourceItem = {
   title: string;
@@ -52,65 +54,101 @@ const youtubeChannels: ResourceItem[] = [
   { title: "NanoBaiter", url: "https://www.youtube.com/@NanoBaiter"},
   { title: "Scambaiter", url: "https://www.youtube.com/@Scambaiter"},
   { title: "ScammerRevolts", url: "https://www.youtube.com/scammerrevolts"}
-
 ];
 
 const Resources: React.FC = () => {
+  const { progress } = useProgress();
+  const isSenior = progress.audience === "senior";
+
   return (
     <AppShell>
       {/* Header Section */}
       <div className="mb-12">
-        <h1 className="font-display text-4xl md:text-5xl font-black">
+        <h1 className={cn(
+          "font-display font-black",
+          isSenior ? "text-5xl md:text-7xl" : "text-4xl md:text-5xl"
+        )}>
           Resources
         </h1>
-        <p className="mt-2 text-muted-foreground max-w-xl">
+        <p className={cn(
+          "mt-2 text-muted-foreground max-w-xl",
+          isSenior ? "text-xl md:text-2xl leading-relaxed" : "text-base"
+        )}>
           Deepen your knowledge with trusted guides and real-world exposure.
         </p>
       </div>
 
       {/* Official Resources Section */}
       <section>
-        <div className="flex items-center gap-2 mb-6 text-primary">
-          <ExternalLink className="h-5 w-5" />
-          <h2 className="font-display text-2xl font-bold">Official Sites</h2>
+        <div className="flex items-center gap-3 mb-6 text-primary">
+          <ExternalLink className={isSenior ? "h-8 w-8" : "h-5 w-5"} />
+          <h2 className={cn("font-display font-bold", isSenior ? "text-3xl" : "text-2xl")}>
+            Official Sites
+          </h2>
         </div>
         
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={cn(
+          "grid gap-6",
+          isSenior ? "grid-cols-1 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
+        )}>
           {officialResources.map((item, i) => (
             <motion.div
               key={`official-${i}`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="rounded-3xl border border-border bg-card p-6 shadow-soft hover:-translate-y-1 hover:shadow-pop transition-all"
+              className={cn(
+                "rounded-3xl border border-border bg-card shadow-soft hover:-translate-y-1 hover:shadow-pop transition-all",
+                isSenior ? "p-10 border-2" : "p-6"
+              )}
             >
-              <h3 className="font-display text-xl font-bold">{item.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
-              <a href={item.url} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block">
-                <Button>Visit Site</Button>
+              <h3 className={cn("font-display font-bold", isSenior ? "text-3xl" : "text-xl")}>
+                {item.title}
+              </h3>
+              <p className={cn(
+                "mt-3 text-muted-foreground",
+                isSenior ? "text-xl leading-relaxed" : "text-sm"
+              )}>
+                {item.description}
+              </p>
+              <a href={item.url} target="_blank" rel="noopener noreferrer" className="mt-6 inline-block w-full">
+                <Button className={cn("w-full", isSenior ? "h-16 text-xl rounded-2xl" : "")}>
+                  Visit Site
+                </Button>
               </a>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* YouTube Section - Clean Layout */}
+      {/* YouTube Section */}
       <section className="mt-16 mb-12">
         <div className="flex items-center gap-3 mb-6">
-          <Youtube className="h-6 w-6 text-red-600" />
-          <h2 className="font-display text-2xl font-bold">Scambaiter</h2>
+          <Youtube className={cn("text-red-600", isSenior ? "h-10 w-10" : "h-6 w-6")} />
+          <h2 className={cn("font-display font-bold", isSenior ? "text-3xl" : "text-2xl")}>
+            Scambaiter
+          </h2>
         </div>
 
-        <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className={cn(
+          "grid gap-4",
+          isSenior ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        )}>
           {youtubeChannels.map((item, i) => (
             <motion.div
               key={`yt-${i}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: (i + officialResources.length) * 0.05 }}
-              className="group flex flex-col items-center justify-center rounded-2xl border border-border bg-card p-5 text-center shadow-sm hover:shadow-md transition-all"
+              className={cn(
+                "group flex flex-col items-center justify-center rounded-2xl border border-border bg-card text-center shadow-sm hover:shadow-md transition-all",
+                isSenior ? "p-8 border-2" : "p-5"
+              )}
             >
-              <h3 className="font-display text-lg font-bold group-hover:text-red-600 transition-colors">
+              <h3 className={cn(
+                "font-display font-bold group-hover:text-red-600 transition-colors",
+                isSenior ? "text-2xl" : "text-lg"
+              )}>
                 {item.title}
               </h3>
               
@@ -118,12 +156,14 @@ const Resources: React.FC = () => {
                 href={item.url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="mt-3 w-full"
+                className="mt-4 w-full"
               >
                 <Button 
                   variant="outline" 
-                  size="sm" 
-                  className="w-full rounded-xl group-hover:bg-red-50 group-hover:text-red-600 group-hover:border-red-200"
+                  className={cn(
+                    "w-full rounded-xl group-hover:bg-red-50 group-hover:text-red-600 group-hover:border-red-200",
+                    isSenior ? "h-14 text-lg" : "h-10 text-sm"
+                  )}
                 >
                   Watch
                 </Button>
