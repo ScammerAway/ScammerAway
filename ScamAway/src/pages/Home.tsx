@@ -31,30 +31,40 @@ const Home = () => {
   return (
     <AppShell>
       <motion.section initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
-        <p className={cn("text-muted-foreground", isSenior ? "text-xl" : "text-sm")}>Welcome!</p>
         <h1 className={cn(
           "font-display font-black mt-1",
           isSenior ? "text-5xl md:text-7xl" : "text-4xl md:text-5xl"
         )}>
-          Today's training
+          Filters
         </h1>
       </motion.section>
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {tracks.map((t, i) => (
+      <div className="mt-8 grid gap-4 sm:grid-cols-4">
+          {tracks.map((t, i) => {
+            const selected = progress.audience === t.id;
+
+            return (
             <motion.button
               key={t.id}
+              
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: i * 0.06 }}
               onClick={() => pick(t.id)}
-              className="text-left rounded-3xl border-2 border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg"
+              whileTap={{ scale: 0.97, y: 1 }} // press down
+              className={cn(
+                "text-left rounded-3xl border-2 bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-lg",
+                selected
+                  ? "border-primary bg-primary/10 shadow-inner"
+                  : "border-border hover:border-primary/40"
+                  )}
             >
               <div className="text-4xl">{t.emoji}</div>
               <div className="mt-3 text-lg font-semibold">{t.title}</div>
               <p className="mt-2 text-sm text-muted-foreground">{t.desc}</p>
             </motion.button>
-          ))}
-        </div>
+            );
+          })}
+      </div>
       <div className="mt-8 grid gap-4 md:grid-cols-3">
         <Link
           to="/practice"
