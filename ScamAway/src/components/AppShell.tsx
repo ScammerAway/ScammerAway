@@ -1,5 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
-import { Shield, BookOpen, MessageSquare, Trophy, Target, LogIn, LogOut, Book } from "lucide-react";
+import {
+  Shield,
+  BookOpen,
+  MessageSquare,
+  Trophy,
+  Target,
+  LogIn,
+  LogOut,
+  Book,
+} from "lucide-react";
 import { useProgress } from "@/hooks/useProgress";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,7 +19,7 @@ const links = [
   { to: "/learn", label: "Learn", icon: BookOpen },
   { to: "/practice", label: "Practice", icon: MessageSquare },
   { to: "/test", label: "Test", icon: Target },
-  { to: "/resources", label: "Resources", icon: Book}
+  { to: "/resources", label: "Resources", icon: Book },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -22,11 +31,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className={cn("min-h-screen bg-warm flex flex-col", audClass)}>
       <header className="sticky top-0 z-30 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <div className="container flex h-16 items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-2 font-display text-xl font-bold tracking-tight">
-            <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-primary-foreground">
-              <Shield className="h-4 w-4" />
-            </span>
-            ScammerAway
+          <Link
+            to="/"
+            className="flex items-center transition-opacity hover:opacity-80"
+          >
+            <img
+              src="/LogoWithWord.png"
+              alt="ScammerAway Logo"
+              className="h-12 w-auto object-contain"
+            />
           </Link>
           <nav className="hidden md:flex items-center gap-1">
             {links.map((l) => {
@@ -38,7 +51,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   to={l.to}
                   className={cn(
                     "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-colors",
-                    active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-secondary",
+                    active
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground hover:bg-secondary",
                   )}
                 >
                   <Icon className="h-4 w-4" />
@@ -47,8 +62,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               );
             })}
           </nav>
-          <div className="flex items-center gap-2">
-          </div>
+          <div className="flex items-center gap-2"></div>
           <ThemeToggle />
         </div>
       </header>
