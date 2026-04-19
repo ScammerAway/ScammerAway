@@ -98,7 +98,7 @@ const Resources: React.FC = () => {
       <section className="mt-16 mb-12">
         <div className="flex items-center gap-3 mb-6">
           <Youtube className="h-6 w-6 text-red-600" />
-          <h2 className="font-display text-2xl font-bold">Scambaiter</h2>
+          <h2 className="font-display text-2xl font-bold">Scambaiters</h2>
         </div>
 
         <div className="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
