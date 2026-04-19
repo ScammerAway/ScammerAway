@@ -36,7 +36,7 @@ const Landing = () => {
   return (
     <AppShell>
     <div className="min-h-screen overflow-hidden bg-hero">
-        <section className="container flex flex-col items-center justify-center text-center pt-8 pb-4" style = {{paddingTop: 0}}>
+        <section className="container flex flex-col items-center justify-center text-center pt-4 pb-4" style = {{paddingTop: 0}}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ const Landing = () => {
           <span className="chip mb-6">
             <Sparkles className="h-3 w-3" /> AI-powered scam roleplay
           </span>
-          <h1 className="font-display text-0 md:text-7xl font-black leading-[1.05] text-foreground" style={{padding: '0'}}>
+          <h1 className="font-display text-0 md:text-5xl font-black leading-[1.05] text-foreground" style={{padding: '0'}}>
             Spot the scam <em className="not-italic text-[hsl(var(--danger))]">before</em> it spots you.
           </h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl">
@@ -55,11 +55,11 @@ const Landing = () => {
         </motion.div>
       </section>
       <div className="bg-hero flex items-center">
-            <div className="container max-w-3xl py-16" style = {{paddingTop: '50px'}}>
+            <div className="container max-w-3xl py-16" style = {{paddingTop: '10px'}}>
               <motion.h1
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="font-display text-4xl md:text-5xl font-black leading-tight"
+                className="font-display text-3xl md:text-5xl font-black leading-tight"
                 style= {{textAlign: 'center'}}
               >
                 Who are we training today?
