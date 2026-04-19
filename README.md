@@ -1,4 +1,5 @@
-#ScammerAway
+# ScammerAway
+
 **Authors:** Blinda Hu, Lawrence Ma, Isaiah Marte
 
 **Event:** Brooklyn Hack
