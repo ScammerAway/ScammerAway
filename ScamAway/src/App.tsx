@@ -7,7 +7,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Landing from "./pages/Landing.tsx";
-import Onboarding from "./pages/Onboarding.tsx";
 import Home from "./pages/Home.tsx";
 import LearnIndex from "./pages/LearnIndex.tsx";
 import LessonView from "./pages/LessonView.tsx";
@@ -27,7 +26,6 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Landing />} />
-              <Route path="/onboarding" element={<Onboarding />} />
               <Route path="/app" element={<Home />} />
               <Route path="/learn" element={<LearnIndex />} />
               <Route path="/learn/:id" element={<LessonView />} />
