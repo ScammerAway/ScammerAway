@@ -45,7 +45,7 @@ export const LESSONS: Lesson[] = [
     id: "identity-theft-phishing",
     title: "Identity Theft & Account Takeover",
     emoji: "🆔",
-    audiences: ["teen", "adult", "senior"],
+    audiences: ["teen", "adult", "senior", "all"],
     summary:
       "Scammers use fake 'Security Alerts' from banks or apps to trick you into entering your login credentials on a fake website, allowing them to steal your identity and access your accounts.",
     redFlags: [
@@ -64,7 +64,7 @@ export const LESSONS: Lesson[] = [
     id: "advance-fee-fraud",
     title: "Advance-Fee & Inheritance Scams",
     emoji: "💰",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     summary:
       "Scammers offer you a large sum of money (inheritance, lottery, or business deal) in exchange for paying a small 'fee' or 'tax' upfront. You pay the fee, but the money never arrives.",
     redFlags: [
@@ -83,7 +83,7 @@ export const LESSONS: Lesson[] = [
     id: "tech-support-scam",
     title: "Tech Support Impersonation",
     emoji: "💻",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     summary:
       "Scammers use fake browser pop-ups or cold calls claiming your computer has a 'critical virus' to trick you into granting remote access and paying for fake repairs.",
     redFlags: [
@@ -102,7 +102,7 @@ export const LESSONS: Lesson[] = [
     id: "refund-overpayment",
     title: "The 'Accidental' Refund Scam",
     emoji: "💸",
-    audiences: ["senior", "adult"],
+    audiences: ["senior", "adult", "all"],
     summary:
       "A scammer claims they accidentally refunded you too much money (e.g., $5,000 instead of $50) and begs you to 'send back' the difference immediately.",
     redFlags: [
@@ -121,7 +121,7 @@ export const LESSONS: Lesson[] = [
     id: "game-currency-generator",
     title: "Free Game Currency Generators",
     emoji: "🎮",
-    audiences: ["teen"],
+    audiences: ["teen", "all"],
     summary:
       "Sites promising 'Unlimited Gems,' 'Robux,' or 'V-Bucks' are scams. They exist to steal your account credentials or force you to complete surveys that make the scammer money.",
     redFlags: [
@@ -140,7 +140,7 @@ export const LESSONS: Lesson[] = [
     id: "youtube-telegram-scam",
     title: "YouTube Comment & Telegram Scams",
     emoji: "💬",
-    audiences: ["teen", "adult"],
+    audiences: ["teen", "adult", "all"],
     summary:
       "Scammers post bot-like comments on popular videos promising huge profits, then lure you to a Telegram or WhatsApp channel to 'invest.'",
     redFlags: [
@@ -159,7 +159,7 @@ export const LESSONS: Lesson[] = [
     id: "influencer-crypto",
     title: "Influencer Crypto Giveaways",
     emoji: "🚀",
-    audiences: ["teen", "adult"],
+    audiences: ["teen", "adult", "all"],
     summary:
       "Influencers do not give away money to random followers. Scammers create fake accounts that look verified to trick you into 'doubling' your crypto or connecting your wallet to a drainer site.",
     redFlags: [
@@ -284,7 +284,7 @@ export const SCENARIOS: Scenario[] = [
     id: "bank-security-alert",
     title: "The 'Unauthorized Login' Alert",
     emoji: "🆔",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     scammerType: "Phishing / Identity Theft",
     persona:
       "An automated-looking email from a major bank. It claims a login occurred from a different country. The link leads to a pixel-perfect replica of the bank's login page designed to capture usernames and passwords.",
@@ -334,7 +334,7 @@ export const SCENARIOS: Scenario[] = [
     id: "inheritance-email",
     title: "The 'Unclaimed Fortune' Email",
     emoji: "💰",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     scammerType: "Advance-Fee Fraud (The 'Nigerian Prince' variant)",
     persona:
       "A 'High-Court Attorney' from a foreign country. They claim to have discovered an unclaimed fortune belonging to a distant relative of yours. They need your help to move the funds.",
@@ -385,7 +385,7 @@ export const SCENARIOS: Scenario[] = [
     id: "tech-support-pop-up",
     title: "The 'Critical Virus' Pop-up",
     emoji: "💻",
-    audiences: ["adult", "senior"],
+    audiences: ["adult", "senior", "all"],
     scammerType: "Tech support / Remote access scam",
     persona:
       "A fake 'Microsoft Certified' technician. Very polite but authoritative. They want you to believe your computer is about to be wiped unless you let them 'fix' the security breach remotely.",
@@ -435,7 +435,7 @@ export const SCENARIOS: Scenario[] = [
     id: "refund-scam",
     title: "The Accidental Refund",
     emoji: "💸",
-    audiences: ["senior", "adult"],
+    audiences: ["senior", "adult", "all"],
     scammerType: "Refund overpayment scam",
     persona:
       "A frantic 'customer support representative' claiming they accidentally processed a $5,000 refund instead of $50. They are weeping and claiming they will be fired if you don't return the money.",
@@ -485,7 +485,7 @@ export const SCENARIOS: Scenario[] = [
     id: "free-currency-gen",
     title: "The 'Unlimited Robux' Generator",
     emoji: "🎮",
-    audiences: ["teen"],
+    audiences: ["teen", "all"],
     scammerType: "Phishing / Credential harvesting",
     persona:
       "A slick, professional-looking website claiming to be a 'Currency Generator'. It shows progress bars, 'recent user' notifications, and asks for login info.",
@@ -536,7 +536,7 @@ export const SCENARIOS: Scenario[] = [
     id: "yt-comment-funnel",
     title: "The 'Secret Trader' Comment",
     emoji: "💬",
-    audiences: ["teen", "adult"],
+    audiences: ["teen", "adult", "all"],
     scammerType: "YouTube to Telegram funnel scam",
     persona:
       "A bot account posing as a grateful student. Claims they made $10,000 using 'Mr. Smith's trading method' on Telegram. They are very insistent that you message 'Mr. Smith' directly.",
@@ -586,7 +586,7 @@ export const SCENARIOS: Scenario[] = [
     id: "influencer-giveaway",
     title: "The 'Giveaway' DM",
     emoji: "🚀",
-    audiences: ["teen", "adult"],
+    audiences: ["teen", "adult", "all"],
     scammerType: "Influencer crypto giveaway scam",
     persona:
       "A fake account mimicking a famous tech YouTuber. Very hyped up, uses emojis, claims to be 'giving back' to the community by doubling crypto deposits.",
