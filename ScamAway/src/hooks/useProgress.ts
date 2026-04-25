@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 export type Audience = "teen" | "adult" | "senior" | "all";
 
 type ProgressState = {
-  audience: Audience | null;
+  audience: Audience;
   completedLessons: string[];
 };
 
@@ -17,14 +17,14 @@ const USER_KEY = "scammeraway:user";
 const readProgress = (): ProgressState => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { audience: null, completedLessons: [] };
+    if (!raw) return { audience: "all", completedLessons: [] };
     const parsed = JSON.parse(raw);
     return {
-      audience: parsed.audience ?? null,
+      audience: parsed.audience ?? "all",
       completedLessons: Array.isArray(parsed.completedLessons) ? parsed.completedLessons : [],
     };
   } catch {
-    return { audience: null, completedLessons: [] };
+    return { audience: "all", completedLessons: [] };
   }
 };
 
@@ -38,7 +38,7 @@ const readUser = (): LocalUser => {
 };
 
 export const useProgress = () => {
-  const [progress, setProgress] = useState<ProgressState>({ audience: null, completedLessons: [] });
+  const [progress, setProgress] = useState<ProgressState>({ audience: "all", completedLessons: [] });
   const [user, setUser] = useState<LocalUser>(null);
 
   useEffect(() => {
