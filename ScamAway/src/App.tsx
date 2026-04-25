@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -23,7 +23,7 @@ const App = () => (
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <Toaster />
         <Sonner />
-          <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <HashRouter>
             <Routes>
               <Route path="/" element={<Landing />} />
               <Route path="/app" element={<Home />} />
@@ -37,7 +37,7 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
