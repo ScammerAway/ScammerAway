@@ -36,7 +36,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             className="flex items-center transition-opacity hover:opacity-80"
           >
             <img
-              src="/LogoWithWord.png"
+              src={`${import.meta.env.BASE_URL}LogoWithWord.png`}
               alt="ScammerAway Logo"
               className="h-12 w-auto object-contain"
             />
